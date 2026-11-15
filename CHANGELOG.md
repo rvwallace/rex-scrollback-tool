@@ -1,10 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 - 2026-11-14
 
 - Keep the live browse popup open with a clear message when no command blocks are found.
 - Add a Starship prompt example, a sample capture, and a picker screenshot.
-- Resolve the Rex action command from the uv tool bin directory when Rex does not inherit the shell PATH.
+- Resolve the Rex action command from the configured override, uv tool bin directory, or standard `~/.local/bin` path.
 
 ## 0.1.0 - 2026-11-14
 

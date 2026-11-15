@@ -129,7 +129,12 @@ def main():
             return
         blocks = parse_blocks(text, args.prompt, args.prompt_lines)
         if not blocks:
-            print("No command prompts found. Check --prompt and --prompt-lines.")
+            print("No command blocks found. Check the CMD> marker, --prompt, and --prompt-lines.")
+            if not args.input and sys.stdin.isatty():
+                try:
+                    input("Press Enter to close this popup.")
+                except (EOFError, KeyboardInterrupt):
+                    pass
             return
         run_picker(blocks, folder)
 

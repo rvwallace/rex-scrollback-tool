@@ -1,0 +1,21 @@
+~/projects/widget
+main • zsh
+CMD> git status --short
+ M src/widget.py
+?? docs/usage.md
+
+~/projects/widget
+main • zsh
+CMD> uv run pytest -q
+......                                                                   [100%]
+6 passed in 0.20s
+
+~/projects/widget
+main • zsh
+CMD> git diff --stat
+ src/widget.py | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+~/projects/widget
+main • zsh
+CMD>

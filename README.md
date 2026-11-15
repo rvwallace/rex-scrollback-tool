@@ -48,6 +48,10 @@ The editor opens a temporary file. The tool deletes this file after the editor e
 
 Add these commands as Rex palette actions or shortcuts. See the [Rex action example](examples/history.lua).
 
+The Cmd+y action opens this floating picker:
+
+![Rex Scrollback Tool floating command picker with a selected command and output preview](docs/images/command-picker.png)
+
 ## Use with a saved capture
 
 Print parsed commands as JSON:
@@ -56,15 +60,36 @@ Print parsed commands as JSON:
 rex-scrollback preview --input /path/to/capture.txt
 ```
 
+Try the picker with the included sample capture:
+
+```sh
+rex-scrollback browse --input examples/demo-capture.txt
+```
+
 The default command marker is `CMD>` at the start of a line. The default prompt height is three lines. These lines remove prompt decoration before the next command. Set another marker or prompt height with `--prompt` and `--prompt-lines`:
 
 ```sh
 rex-scrollback preview --input capture.txt --prompt '^❯ ' --prompt-lines 2
 ```
 
+### Starship prompt example
+
+Add this to `~/.config/starship.toml`, or merge it with your current settings:
+
+```toml
+add_newline = true
+format = "$directory$line_break$character"
+
+[character]
+success_symbol = "[CMD>](bold green) "
+error_symbol = "[CMD>](bold red) "
+```
+
+This makes a three-line prompt: a blank line, a directory line, and a `CMD>` line. The default `--prompt-lines 3` setting matches this layout. If your prompt uses a different height, set `--prompt-lines` to match it.
+
 The picker searches commands from one pane. It only sees commands that remain in scrollback. It does not read shell history or other panes.
 
-Text matching can mistake prompt-like output for a command. It cannot reliably identify commands that span multiple lines. Use a distinct prompt marker to reduce these errors. The picker never runs the selected command.
+Text matching can mistake prompt-like output for a command. It cannot reliably identify commands that span multiple lines. Use a distinct prompt marker to reduce these errors. The picker never runs the selected command. If live browse finds no command blocks, it shows a message and waits for Enter. The JSON preview command still returns `[]` when it finds no blocks.
 
 The Rex capture API does not return command ranges. A future version can read structured command boundaries if Rex or a shell exposes them.
 

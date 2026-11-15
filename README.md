@@ -2,7 +2,7 @@
 
 Use the fzf picker to find a command in terminal scrollback. Copy the command, its output, or both. Or open a text snapshot in `$VISUAL`, `$EDITOR`, or `nvim`.
 
-I built this tool after I missed the keyboard-first visual copy workflow from tmux. This tool helps me find a command and copy its output. It does not select arbitrary screen text or replace tmux copy mode.
+I missed tmux copy mode. I also relied on Snaglord to find and copy commands and their output. The fzf picker follows that Snaglord workflow. The editor mode opens scrollback for broader review. This tool does not select arbitrary screen text or replace tmux copy mode.
 
 Rex runs on macOS. The tool uses macOS `pbcopy` for clipboard access. The CLI can read a saved text capture without Rex. Live pane capture needs the Rex CLI.
 
